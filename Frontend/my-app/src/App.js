@@ -19,15 +19,13 @@ import ProductDetails from './features/ProductDetails';
 import Cart from './features/Cart';
 import { useDispatch } from 'react-redux';
 
-import axios from "axios";
-import { userCart } from './features/TestSlice';
-import { useEffect } from 'react';
+
 import Order from './features/Order';
-import Folder from './features/Folder';
-import Pro from './features/Pro';
+
 
 
 function App() {
+  
 
   const router= createBrowserRouter(
     createRoutesFromElements(
@@ -40,8 +38,6 @@ function App() {
         <Route path='/category' element={<Category/>}/> 
         <Route path='/cart' element={<Cart/>}/> 
         <Route path='/order' element={<Order/>}/> 
-        <Route path='/folder' element={<Pro/>}/>
-        <Route path='/folder/:id' element={<Folder/>}/>
         <Route path='/productview/:category/:id' element={<ProductDetails/>} />
       </Route>
     )

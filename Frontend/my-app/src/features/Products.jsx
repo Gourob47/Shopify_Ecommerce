@@ -17,7 +17,7 @@ const Products = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
-  const [price,setPrice]=useState("");
+  const [price, setPrice] = useState("");
 
   const [cat, setCat] = useState("");
 
@@ -26,19 +26,14 @@ const Products = () => {
 
   const [cnt, setCnt] = useState(0);
 
-  const[uid,setUid]=useState(0);
+  const [uid, setUid] = useState(0);
 
   const ans = useSelector((state) => state.test.size);
   const ans1 = useSelector((state) => state.test.color);
   const ans2 = useSelector((state) => state.test.inputItems);
   const extra = useSelector((state) => state.test.extraItems);
 
-
-
-
   const navigate = useNavigate();
-
-  //console.log(ans2);
 
   const dispatch = useDispatch();
 
@@ -120,15 +115,13 @@ const Products = () => {
 
     const s = JSON.stringify(ans2);
 
-
     const formData = new FormData();
     formData.append("name", name);
     formData.append("description", description);
     formData.append("image", image);
     formData.append("category", category);
     formData.append("size", s);
-    formData.append("price",price);
-    
+    formData.append("price", price);
 
     const response = await axios.post(
       "http://localhost:3333/create/products",
@@ -149,14 +142,12 @@ const Products = () => {
       setDescription("");
       setImage("");
       setCategory("");
-    }
-    else
-    {
-      alert('Products Name Must be Unique')
+    } else {
+      alert("Products Name Must be Unique");
     }
   }
 
-  const arr=[];
+  const arr = [];
 
   return (
     <div className="upload-product-container">
@@ -177,8 +168,8 @@ const Products = () => {
           value={description}
           placeholder="Enter product description"
         />
-      
-         {/* <select value={uid} onChange={(e)=> setUid(Number(e.target.value))} >
+
+        {/* <select value={uid} onChange={(e)=> setUid(Number(e.target.value))} >
           {arr.map((number) => (
             <option key={number} value={number}>{number}</option>
           ))}
@@ -191,7 +182,6 @@ const Products = () => {
           value={category}
           placeholder="Enter product category"
         />
-
 
         <label htmlFor="productDescription">Price</label>
         <input

@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+const route= localStorage.getItem('path')!==null?JSON.parse(localStorage.getItem('path')):[];
 const initialState = {
+
+
   product: [],
 
   inputItems: [
@@ -19,9 +21,8 @@ const initialState = {
   color: [],
   extraItems: [],
   cart: [],
-  folders: [],
-  files: [],
-  path: [],
+ 
+  
 };
 
 const testSlice = createSlice({
@@ -31,46 +32,7 @@ const testSlice = createSlice({
     product: (state, action) => {
       state.product = action.payload;
     },
-    fold: (state, action) => {
-      const { payload } = action;
 
-      if (action.payload.length == 0) {
-        state.folders = [];
-      } else if (action.payload.length >= 1) {
-        state.folders = action.payload;
-        state.path = JSON.parse(payload[0].path);
-      } else {
-        state.folders.push(action.payload);
-      }
-    },
-    directory: (state, action) => {
-      const { payload } = action;
-      let path = state.path.find((item) => item == action.payload);
-      if (path) {
-        path = action.payload;
-      } else {
-        state.path.push(action.payload);
-      }
-    },
-    foldersFile: (state, action) => {
-      if (action.payload.length == 0) {
-        state.files = [];
-      } else if (state.files.length == 0) state.files = action.payload;
-      else state.files.push(action.payload);
-    },
-    editFold: (state, action) => {
-      const { payload } = action;
-
-      const folder = state.folders.find((item) => item.id == payload.id);
-      if (folder) {
-        folder.foldername = payload.foldername;
-      }
-    },
-    deleteFold: (state, action) => {
-      const { payload } = action;
-
-      state.folders = state.folders.filter((item) => item.id !== payload.id);
-    },
     userCart: (state, action) => {
       const { payload } = action;
       state.cart = action.payload;
@@ -413,7 +375,10 @@ const testSlice = createSlice({
 });
 
 export const {
+  setName,
+  getFiles,
   product,
+  cfold,
   fold,
   editFold,
   deleteFold,
